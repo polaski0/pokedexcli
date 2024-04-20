@@ -10,7 +10,7 @@ const API_BASE_PATH = "https://pokeapi.co/api/v2"
 const LOCATION_AREA_PATH = API_BASE_PATH + "/location-area"
 
 type LocationArea struct {
-	Count    int    `json:"count"`
+	Count    int     `json:"count"`
 	Next     *string `json:"next"`
 	Previous *string `json:"previous"`
 	Results  []struct {
@@ -19,12 +19,11 @@ type LocationArea struct {
 	} `json:"results"`
 }
 
-
 func GetLocationArea(pageUrl *string) (LocationArea, error) {
-    url := LOCATION_AREA_PATH
-    if pageUrl != nil {
-        url = *pageUrl
-    }
+	url := LOCATION_AREA_PATH
+	if pageUrl != nil {
+		url = *pageUrl
+	}
 
 	res, err := http.Get(url)
 	if err != nil {

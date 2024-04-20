@@ -21,7 +21,7 @@ type CliCommand struct {
 func startRepl() {
 	scanner := bufio.NewScanner(os.Stdin)
 	cmd := commandList()
-    var conf Config
+	var conf Config
 
 	for {
 		fmt.Print("Pokedex > ")

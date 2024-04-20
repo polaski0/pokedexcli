@@ -7,35 +7,35 @@ import (
 )
 
 func commandMap(c *Config) error {
-    locationRes, err := internal.GetLocationArea(c.Next)
+	locationRes, err := internal.GetLocationArea(c.Next)
 
-    if err != nil {
-        return err
-    }
+	if err != nil {
+		return err
+	}
 
-    c.Next = locationRes.Next
-    c.Previous = locationRes.Previous
+	c.Next = locationRes.Next
+	c.Previous = locationRes.Previous
 
-    for _, res := range locationRes.Results {
-        fmt.Println(res.Name)
-    }
+	for _, res := range locationRes.Results {
+		fmt.Println(res.Name)
+	}
 
 	return nil
 }
 
 func commandMapb(c *Config) error {
-    locationRes, err := internal.GetLocationArea(c.Previous)
+	locationRes, err := internal.GetLocationArea(c.Previous)
 
-    if err != nil {
-        return err
-    }
+	if err != nil {
+		return err
+	}
 
-    c.Next = locationRes.Next
-    c.Previous = locationRes.Previous
+	c.Next = locationRes.Next
+	c.Previous = locationRes.Previous
 
-    for _, res := range locationRes.Results {
-        fmt.Println(res.Name)
-    }
+	for _, res := range locationRes.Results {
+		fmt.Println(res.Name)
+	}
 
 	return nil
 }
