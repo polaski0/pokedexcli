@@ -1,10 +1,12 @@
-package internal
+package api
 
 import (
 	"encoding/json"
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/polaski0/pokedexcli/internal/cache"
 )
 
 const API_BASE_PATH = "https://pokeapi.co/api/v2"
@@ -22,7 +24,7 @@ type LocationArea struct {
 	Results  []Result `json:"results"`
 }
 
-var cache Cache = NewCache(10 * time.Second)
+var c cache.Cache = cache.NewCache(10 * time.Second)
 
 func GetLocationArea(pageUrl *string) (LocationArea, error) {
 	var locationArea LocationArea
@@ -32,7 +34,7 @@ func GetLocationArea(pageUrl *string) (LocationArea, error) {
 		url = *pageUrl
 	}
 
-	if res, ok := cache.Get(url); ok {
+	if res, ok := c.Get(url); ok {
 		err := json.Unmarshal(res, &locationArea)
 		if err != nil {
 			return LocationArea{}, err
@@ -56,7 +58,7 @@ func GetLocationArea(pageUrl *string) (LocationArea, error) {
 			return LocationArea{}, err
 		}
 
-		cache.Add(url, body)
+		c.Add(url, body)
 		return locationArea, nil
 	}
 }
