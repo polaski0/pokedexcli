@@ -22,10 +22,11 @@ type LocationArea struct {
 	Results  []Result `json:"results"`
 }
 
+var cache Cache = NewCache(10 * time.Second)
+
 func GetLocationArea(pageUrl *string) (LocationArea, error) {
 	var locationArea LocationArea
 	url := LOCATION_AREA_PATH
-	cache := NewCache(5 * time.Second)
 
 	if pageUrl != nil {
 		url = *pageUrl
@@ -55,7 +56,7 @@ func GetLocationArea(pageUrl *string) (LocationArea, error) {
 			return LocationArea{}, err
 		}
 
-        cache.Add(url, body)
+		cache.Add(url, body)
 		return locationArea, nil
 	}
 }
