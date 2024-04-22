@@ -16,7 +16,7 @@ type Config struct {
 type CliCommand struct {
 	Name        string
 	Description string
-	Callback    func(c *Config) error
+	Callback    func(c *Config, args ...string) error
 }
 
 func startRepl() {
@@ -33,10 +33,10 @@ func startRepl() {
 		}
 
 		t := cleanInput(scanner.Text())
-        commandName := t[0]
+		commandName := t[0]
 
 		if c, ok := cmd[commandName]; ok {
-			err := c.Callback(&conf) // allow callback functions to retrieve other arguments
+            err := c.Callback(&conf, t[1:]...) // allow callback functions to retrieve other arguments
 
 			if err != nil {
 				log.Fatal(err)
@@ -47,9 +47,9 @@ func startRepl() {
 }
 
 func cleanInput(s string) []string {
-    out := strings.ToLower(s)
-    w := strings.Fields(out)
-    return w
+	out := strings.ToLower(s)
+	w := strings.Fields(out)
+	return w
 }
 
 func commandList() map[string]CliCommand {

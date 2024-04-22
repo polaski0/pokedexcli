@@ -6,7 +6,7 @@ import (
 	"github.com/polaski0/pokedexcli/internal/api"
 )
 
-func commandMap(c *Config) error {
+func commandMap(c *Config, args ...string) error {
 	locationRes, err := api.GetLocationArea(c.Next)
 
 	if err != nil {
@@ -23,7 +23,7 @@ func commandMap(c *Config) error {
 	return nil
 }
 
-func commandMapb(c *Config) error {
+func commandMapb(c *Config, args ...string) error {
 	locationRes, err := api.GetLocationArea(c.Previous)
 
 	if err != nil {
