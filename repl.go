@@ -65,5 +65,10 @@ func commandList() map[string]CliCommand {
 			Description: "It displays the previous 20 locations. It's a way to go back.",
 			Callback:    commandMapb,
 		},
+		"explore": {
+			Name:        "explore",
+			Description: "Displays the location related to the area",
+			Callback:    commandExplore,
+		},
 	}
 }
