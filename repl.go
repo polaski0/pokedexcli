@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 type Config struct {
@@ -31,9 +32,9 @@ func startRepl() {
 			return
 		}
 
-		t := scanner.Text()
-		if c, ok := cmd[t]; ok {
-			err := c.Callback(&conf)
+		t := strings.Split(scanner.Text(), " ")
+		if c, ok := cmd[cleanInput(t[0])]; ok {
+			err := c.Callback(&conf) // allow callback functions to retrieve other arguments
 
 			if err != nil {
 				log.Fatal(err)
@@ -41,6 +42,10 @@ func startRepl() {
 			}
 		}
 	}
+}
+
+func cleanInput(s string) string {
+    return strings.ToLower(s)
 }
 
 func commandList() map[string]CliCommand {
