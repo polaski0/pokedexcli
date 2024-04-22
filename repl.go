@@ -32,8 +32,10 @@ func startRepl() {
 			return
 		}
 
-		t := strings.Split(scanner.Text(), " ")
-		if c, ok := cmd[cleanInput(t[0])]; ok {
+		t := cleanInput(scanner.Text())
+        commandName := t[0]
+
+		if c, ok := cmd[commandName]; ok {
 			err := c.Callback(&conf) // allow callback functions to retrieve other arguments
 
 			if err != nil {
@@ -44,8 +46,10 @@ func startRepl() {
 	}
 }
 
-func cleanInput(s string) string {
-    return strings.ToLower(s)
+func cleanInput(s string) []string {
+    out := strings.ToLower(s)
+    w := strings.Fields(out)
+    return w
 }
 
 func commandList() map[string]CliCommand {
