@@ -12,7 +12,7 @@ func commandExplore(c *Config, args ...string) error {
 	}
 
 	area := args[0]
-	exploredRes, err := api.GetExploredArea(&area)
+	exploredRes, err := api.GetLocationByArea(&area)
 
 	if err != nil {
 		return err

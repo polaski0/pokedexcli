@@ -7,7 +7,7 @@ import (
 )
 
 func commandMap(c *Config, args ...string) error {
-	locationRes, err := api.GetLocationArea(c.Next)
+	locationRes, err := api.GetLocation(c.Next)
 
 	if err != nil {
 		return err
@@ -24,7 +24,7 @@ func commandMap(c *Config, args ...string) error {
 }
 
 func commandMapb(c *Config, args ...string) error {
-	locationRes, err := api.GetLocationArea(c.Previous)
+	locationRes, err := api.GetLocation(c.Previous)
 
 	if err != nil {
 		return err

@@ -56,7 +56,7 @@ func getRequest[T any](pageUrl string, c cache.Cache) (*T, error) {
 	}
 }
 
-func GetLocationArea(pageUrl *string) (LocationArea, error) {
+func GetLocation(pageUrl *string) (LocationArea, error) {
 	url := LOCATION_AREA_PATH
 
 	if pageUrl != nil {
@@ -121,7 +121,7 @@ type ExploreArea struct {
 	} `json:"pokemon_encounters"`
 }
 
-func GetExploredArea(area *string) (ExploreArea, error) {
+func GetLocationByArea(area *string) (ExploreArea, error) {
     if area == nil {
         return ExploreArea{}, nil
     }
