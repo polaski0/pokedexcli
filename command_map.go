@@ -1,13 +1,9 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/polaski0/pokedexcli/internal/api"
-)
+import "fmt"
 
 func commandMap(c *Config, args ...string) error {
-	locationRes, err := api.GetLocation(c.Next)
+	locationRes, err := c.Client.GetLocation(c.Next)
 
 	if err != nil {
 		return err
@@ -24,7 +20,7 @@ func commandMap(c *Config, args ...string) error {
 }
 
 func commandMapb(c *Config, args ...string) error {
-	locationRes, err := api.GetLocation(c.Previous)
+	locationRes, err := c.Client.GetLocation(c.Previous)
 
 	if err != nil {
 		return err

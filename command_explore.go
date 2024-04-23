@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/polaski0/pokedexcli/internal/api"
-)
+import "fmt"
 
 func commandExplore(c *Config, args ...string) error {
 	if len(args) == 0 {
@@ -12,13 +8,13 @@ func commandExplore(c *Config, args ...string) error {
 	}
 
 	area := args[0]
-	exploredRes, err := api.GetLocationByArea(&area)
+	exploredRes, err := c.Client.GetLocationByArea(&area)
 
 	if err != nil {
 		return err
 	}
 
-    fmt.Printf("Exploring %v...\n", area)
+	fmt.Printf("Exploring %v...\n", area)
 	for _, res := range exploredRes.PokemonEncounters {
 		fmt.Println("-", res.Pokemon.Name)
 	}

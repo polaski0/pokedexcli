@@ -6,9 +6,12 @@ import (
 	"log"
 	"os"
 	"strings"
+
+	"github.com/polaski0/pokedexcli/internal/api"
 )
 
 type Config struct {
+	Client   api.Client
 	Next     *string
 	Previous *string
 }
@@ -19,10 +22,9 @@ type CliCommand struct {
 	Callback    func(c *Config, args ...string) error
 }
 
-func startRepl() {
+func startRepl(conf *Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	cmd := commandList()
-	var conf Config
 
 	for {
 		fmt.Print("Pokedex > ")
@@ -36,7 +38,7 @@ func startRepl() {
 		commandName := t[0]
 
 		if c, ok := cmd[commandName]; ok {
-            err := c.Callback(&conf, t[1:]...) // allow callback functions to retrieve other arguments
+			err := c.Callback(conf, t[1:]...) // allow callback functions to retrieve other arguments
 
 			if err != nil {
 				log.Fatal(err)
