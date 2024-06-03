@@ -23,7 +23,7 @@ func commandCatch(c *Config, args ...string) error {
 	fmt.Printf("Throwing a Pokeball at %v...\n", pokemon)
 	if isCaught == 1 {
 		fmt.Printf("%v was caught!\n", pokemon)
-		c.Client.Pokedex[pokemon] = pokemonRes
+		c.Pokedex[pokemon] = pokemonRes
 	} else {
 		fmt.Printf("%v escaped!\n", pokemon)
 	}

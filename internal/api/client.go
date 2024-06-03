@@ -8,12 +8,10 @@ import (
 
 type Client struct {
 	cache cache.Cache
-    Pokedex map[string]Pokemon
 }
 
 func NewClient(d time.Duration) Client {
 	return Client{
         cache: cache.NewCache(d),
-        Pokedex: make(map[string]Pokemon),
     }
 }

@@ -12,6 +12,7 @@ import (
 
 type Config struct {
 	Client   api.Client
+	Pokedex  map[string]api.Pokemon
 	Next     *string
 	Previous *string
 }
@@ -38,7 +39,7 @@ func startRepl(conf *Config) {
 		commandName := t[0]
 
 		if c, ok := cmd[commandName]; ok {
-			err := c.Callback(conf, t[1:]...) // allow callback functions to retrieve other arguments
+			err := c.Callback(conf, t[1:]...)
 
 			if err != nil {
 				log.Fatal(err)
