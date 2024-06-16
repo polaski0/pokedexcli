@@ -18,11 +18,11 @@ func commandCatch(c *Config, args ...string) error {
 		return err
 	}
 
-	isCaught := math.Round(float64(rand.Intn(pokemonRes.BaseExperience)) / float64(pokemonRes.BaseExperience))
-
-	fmt.Printf("Throwing a Pokeball at %v...\n", pokemon)
+    fmt.Printf("Throwing a Pokeball at %v...\n", pokemon)
+    isCaught := math.Round(float64(rand.Intn(pokemonRes.BaseExperience)) / float64(pokemonRes.BaseExperience))
 	if isCaught == 1 {
 		fmt.Printf("%v was caught!\n", pokemon)
+		fmt.Println("You may now inspect it with the inspect command.")
 		c.Pokedex[pokemon] = pokemonRes
 	} else {
 		fmt.Printf("%v escaped!\n", pokemon)
