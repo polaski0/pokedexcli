@@ -87,5 +87,10 @@ func commandList() map[string]CliCommand {
 			Description: "Catch a pokemon",
 			Callback:    commandCatch,
 		},
+		"inspect": {
+			Name:        "inspect",
+			Description: "Inspect a pokemon",
+			Callback:    commandInspect,
+		},
 	}
 }
